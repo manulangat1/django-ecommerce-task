@@ -160,3 +160,9 @@ cython_debug/
 #.idea/
 
 venv
+.vscode
+.idea
+.coverage 
+.DS_Store
+staticfiles
+mediafiles
