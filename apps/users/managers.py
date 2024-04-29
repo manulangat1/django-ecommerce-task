@@ -61,7 +61,7 @@ class CustomUserManager(BaseUserManager):
             raise ValueError("Super users must have  a password")
 
         if email:
-            email = self.normalize_email()
+            email = self.normalize_email(email)
             self.email_validator(email)
         else:
             raise ValueError(_("Admin: Email must be provided"))
