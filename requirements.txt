@@ -1,0 +1,16 @@
+asgiref==3.8.1
+Django==5.0.4
+sqlparse==0.5.0
+djangorestframework
+django-environ
+django-filter
+django-autoslug
+django-countries
+Pillow 
+django-phonenumber-field 
+phonenumbers
+psycopg2-binary
+flake8 
+black 
+isort
+
