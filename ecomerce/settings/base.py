@@ -128,6 +128,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 TIME_ZONE = "Africa/Nairobi"
 
 
+AUTH_USER_MODEL = "users.User"
+
 import logging
 import logging.config
 
