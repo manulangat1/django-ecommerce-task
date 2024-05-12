@@ -46,4 +46,20 @@ class ListAllProductAPIView(generics.ListAPIView):
     ordering_fields = ["created_at"]
 
 
-# class CategoryListView(generics.ListCreateAPIView):
+class GetProductDetail(APIView):
+
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, id):
+        product = Product.objects.get(id=id)
+        serializer = ProductSerializer(product)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class CreateProductApiView(APIView):
+
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        print(self, request)
+        return Response({"data": "created"}, status=status.HTTP_201_CREATED)

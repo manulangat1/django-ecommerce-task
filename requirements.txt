@@ -16,4 +16,8 @@ isort
 djoser 
 djangorestframework-simplejwt
 pyJWT
-
+pytest-django 
+pytest-factoryboy
+Faker
+pytest-cov
+django-cors-headers

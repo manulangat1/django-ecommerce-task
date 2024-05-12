@@ -3,10 +3,15 @@ from django.utils.translation import gettext_lazy as _
 from apps.common.models import TimeStampedUUIDModel
 from autoslug import AutoSlugField
 
+from django.contrib.auth import get_user_model
+
 """
 Custom manager that returns all the products that are currently being sold. 
 
 """
+
+
+User = get_user_model()
 
 
 class ProductSellingManager(models.Manager):
@@ -37,6 +42,8 @@ class Product(TimeStampedUUIDModel):
     objects = models.Manager()
 
     selling = ProductSellingManager()
+
+    # seller = models.
 
     def __str__(self) -> str:
         return self.name
