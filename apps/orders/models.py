@@ -19,8 +19,10 @@ class OrderItem(TimeStampedUUIDModel):
         return f"{self.buyer} - { self.item.name}"
 
     def get_total_price(self):
+
         if self.item.is_discounted:
             return self.item.discount_price * self.quantity
+
         return self.item.price * self.quantity
 
 
@@ -36,6 +38,6 @@ class Order(TimeStampedUUIDModel):
 
     def get_total_price(self):
         total = 0
-        for item in self.orderItems:
+        for item in self.orderItems.all():
             total += item.get_total_price()
         return total

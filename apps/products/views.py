@@ -28,13 +28,15 @@ class ProductFilter(django_filters.FilterSet):
 
     class Meta:
         model = Product
-        fields = ["price"]
+        fields = [
+            "price",
+        ]
 
 
 class ListAllProductAPIView(generics.ListAPIView):
     #  this allows for even unathenticated users to browse the products
     serializer_class = ProductSerializer
-    queryset = Product.objects.all().order_by("-created_at")
+    queryset = Product.selling.all().order_by("-created_at")
     pagination_class = ProductPagination
     filter_backends = [
         DjangoFilterBackend,
@@ -61,5 +63,9 @@ class CreateProductApiView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request):
-        print(self, request)
-        return Response({"data": "created"}, status=status.HTTP_201_CREATED)
+        data = request.data
+        serializer = ProductSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"data": "created"}, status=status.HTTP_201_CREATED)
+        return Response({"error": "Not created"}, status=status.HTTP_400_BAD_REQUEST)

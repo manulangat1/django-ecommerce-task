@@ -21,3 +21,4 @@ pytest-factoryboy
 Faker
 pytest-cov
 django-cors-headers
+pika
